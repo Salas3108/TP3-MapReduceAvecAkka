@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>MapReduce avec Akka</title>
+</head>
+<body>
+    <h1>TP3 - Akka</h1>
+
+	<h1>Initialisation des acteurs akka</h1>
+    <!-- Bouton pour initialiser les acteurs -->
+    <form action="/initialize" method="post">
+        <button type="submit">submit</button>
+    </form>
+
+    <!-- Formulaire pour téléverser un fichier -->
+    <h2>Fichiers a analyser</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Message de confirmation -->
+    <p th:if="${message}" th:text="${message}"></p>
+
+    <!-- Formulaire pour rechercher un mot -->
+    <h2>Rechercher un mot</h2>
+    <form action="/search" method="post">
+        <input type="text" name="word" placeholder="Entrez un mot" required>
+        <br>
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <!-- Affichage du résultat de la recherche -->
+    <div th:if="${word}">
+        <p>Le mot "<span th:text="${word}"></span>" apparaît <span th:text="${count}"></span> fois.</p>
+    </div>
+</body>
+</html>
