@@ -45,6 +45,7 @@ public class MapReduceController {
         }
         return "index";
     }
+    
 
     @PostMapping("/search")
     public String searchWord(@RequestParam("word") String word, Model model) {
@@ -61,6 +62,7 @@ public class MapReduceController {
         return "index";
     }
 
+    
     @PostMapping("/initialize")
     public String initializeActors(Model model) {
         akkaService.initializeActors();

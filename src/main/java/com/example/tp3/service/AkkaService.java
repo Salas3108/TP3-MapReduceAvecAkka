@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-//import java.util.Map;
-//import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import akka.pattern.Patterns;
@@ -25,9 +23,7 @@ public class AkkaService {
     private List<ActorRef> mappers = new ArrayList<>();
     private List<ActorRef> reducers = new ArrayList<>();
 
-    /**
-     * Initialise les acteurs (Mappers et Reducers) si le système n'existe pas déjà.
-     */
+    //Initialise les acteurs
     public void initializeActors() {
         if (system == null) {
             system = ActorSystem.create("MapReduceSystem");
@@ -57,11 +53,8 @@ public class AkkaService {
         }
     }
 
-    /**
-     * Traite le contenu d'un fichier en envoyant chaque ligne à un Mapper.
-     *
-     * @param content Le contenu du fichier à traiter.
-     */
+     //Traiter le contenu d'un fichier en envoyant chaque ligne à un Mapper.
+   
     public void processFile(String content) {
         if (system == null) {
             throw new IllegalStateException("Le système Akka n'a pas été initialisé.");
@@ -82,12 +75,8 @@ public class AkkaService {
         }
     }
 
-    /**
-     * Récupère le nombre d'occurrences d'un mot en interrogeant le Reducer approprié.
-     *
-     * @param word Le mot à rechercher.
-     * @return Le nombre d'occurrences du mot.
-     */
+     //Récupère le nombre d'occurrences d'un mot en interrogeant le Reducer approprié.
+    
     public int getWordCount(String word) {
         if (system == null) {
             throw new IllegalStateException("Le système Akka n'a pas été initialisé.");
@@ -114,9 +103,8 @@ public class AkkaService {
         }
     }
 
-    /**
-     * Arrête le système Akka.
-     */
+    //Arrête le système Akka.
+
     public void shutdown() {
         if (system != null) {
             system.terminate();
