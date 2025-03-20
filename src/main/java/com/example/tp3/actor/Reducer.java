@@ -11,7 +11,9 @@ public class Reducer extends UntypedActor {
     public void onReceive(Object message) throws Throwable {
         if (message instanceof String) {
             String word = (String) message;
+            System.out.println("Reducer reçoit le mot : " + word);
             wordCounts.put(word, wordCounts.getOrDefault(word, 0) + 1);
+            System.out.println("Compteur pour '" + word + "' : " + wordCounts.get(word));
         } else if (message instanceof GetCount) {
             GetCount getCount = (GetCount) message;
             getSender().tell(wordCounts.getOrDefault(getCount.word, 0), getSelf());

@@ -21,7 +21,7 @@
     </form>
 
     <!-- Message de confirmation -->
-    <p th:if="${message}" th:text="${message}"></p>
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
     <!-- Formulaire pour rechercher un mot -->
     <h2>Rechercher un mot</h2>
@@ -30,10 +30,15 @@
         <br>
         <button type="submit">Rechercher</button>
     </form>
+	
+	
+	<!-- Affichage du résultat de la recherche -->
+	<div th:if="${message}">
+	    <p th:text="${message}" style="color: green;"></p>
+	</div>
+	<div th:if="${error}">
+	    <p th:text="${error}" style="color: red;"></p>
+	</div>
 
-    <!-- Affichage du résultat de la recherche -->
-    <div th:if="${word}">
-        <p>Le mot "<span th:text="${word}"></span>" apparaît <span th:text="${count}"></span> fois.</p>
-    </div>
 </body>
 </html>
